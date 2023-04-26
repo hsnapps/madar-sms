@@ -1,13 +1,13 @@
 # MadarSMS notifications channel for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/madar-sms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/madar-sms)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/:package_name)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/madar-sms/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/madar-sms)
 [![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/madar-sms.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/madar-sms)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/madar-sms/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/madar-sms/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/madar-sms.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/madar-sms)
 
 This package makes it easy to send notifications using [MadarSMS](https://mobile.net.sa/) with Laravel.
 
@@ -66,8 +66,8 @@ class InvoicePaid extends Notification
     }
 
     public function toMadarSms() {
-        return (new MadarMessage('Hallo!'))
-        ->sender('Max');
+        return (new MadarMessage('I\'m using Madar SMS!'))
+        ->sender('My Company');
     }
 }
 ```
