@@ -1,6 +1,4 @@
-Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
-
-# A Boilerplate repo for contributions
+# MadarSMS notifications channel for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -11,44 +9,79 @@ Please see [this repo](https://github.com/laravel-notification-channels/channels
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
 
-This package makes it easy to send notifications using [:service_name](link to service) with Laravel 5.5+, 6.x and 7.x
+This package makes it easy to send notifications using [MadarSMS](https://mobile.net.sa/) with Laravel.
 
-**Note:** Replace ```:channel_namespace``` ```:service_name``` ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:package_name``` ```:package_description``` ```:style_ci_id``` ```:sensio_labs_id``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
 
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
 
 
 
 ## Contents
 
-- [Installation](#installation)
-	- [Setting up the :service_name service](#setting-up-the-:service_name-service)
-- [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
-- [Changelog](#changelog)
-- [Testing](#testing)
-- [Security](#security)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
+- [MadarSMS notifications channel for Laravel](#madarsms-notifications-channel-for-laravel)
+  - [Contents](#contents)
+  - [Installation](#installation)
+    - [Setting up the Madar SMS service](#setting-up-the-madar-sms-service)
+  - [Usage](#usage)
+    - [Available Message methods](#available-message-methods)
+  - [Changelog](#changelog)
+  - [Testing](#testing)
+  - [Security](#security)
+  - [Contributing](#contributing)
+  - [Credits](#credits)
+  - [License](#license)
 
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+This package can be installed via composer:
 
-### Setting up the :service_name service
+```composer require laravel-notification-channels/madar-sms```
 
-Optionally include a few steps how users can set up the service.
+### Setting up the Madar SMS service
+
+1. Create an account in Madar SMS [here](https://mobile.net.sa)
+2. Create configuration file `config/madar.php`, You can also publish the config file with the command:
+```bash
+php artisan vendor:publish --provider="NotificationChannels\Madar\MadarServiceProvider"
+```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+You can use this channel by adding `MadarChannel::class` to the array in the `via()` method of your notification class. You need to add the `toMadarSms()` method which should return a `new MadarMessage()` object.
+
+```php
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Madar\MadarChannel;
+use NotificationChannels\Madar\MadarMessage;
+
+class InvoicePaid extends Notification
+{
+    public function via($notifiable)
+    {
+        return [MadarChannel::class];
+    }
+
+    public function toMadarSms() {
+        return (new MadarMessage('Hallo!'))
+        ->sender('Max');
+    }
+}
+```
+
 
 ### Available Message methods
 
-A list of all available options
+- `getPayloadValue($key)`: Returns payload value for a given key.
+- `content(string $message)`: Sets SMS message text.
+- `numbers(string $number)`: Set recipients number(s). 
+- `sender(string $from)`: Set senders name.
+- `delay(string $timestamp)`: Delays message to given timestamp.
+- `repeat($repeat = '0')`: Allow the repeating of sms sending with same data.
+- `by()`: The type of the API.
 
 ## Changelog
 
@@ -70,7 +103,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Hassan Ba Abdullah](https://github.com/hsnapps)
 - [All Contributors](../../contributors)
 
 ## License

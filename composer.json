@@ -1,18 +1,19 @@
 {
-    "name": "laravel-notification-channels/:package_name",
-    "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "name": "laravel-notification-channels/madar-sms",
+    "description": "This package makes it easy to send notifications using MadarSMS(https://mobile.net.sa/) with Laravel.",
+    "homepage": "https://github.com/laravel-notification-channels/madar-sms",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Hassan Ba Abdullah",
+            "email": "prog.hasan@gmail.com",
+            "homepage": "https://github.com/hsnapps",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=7.2",
+        "guzzlehttp/guzzle": "^6.5 || ^7.0",
         "illuminate/notifications": "~6.0 || ~7.0 || ~8.0",
         "illuminate/support": "~6.0 || ~7.0 || ~8.0"
     },
@@ -22,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\Madar\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\Madar\\Test\\": "tests"
         }
     },
     "scripts": {
